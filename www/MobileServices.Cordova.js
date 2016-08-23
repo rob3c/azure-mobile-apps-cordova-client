@@ -28967,7 +28967,7 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Register you own type map.
-  
+
   **Example:**
   ```
   sql.map.register(MyClass, sql.Text);
@@ -28976,7 +28976,7 @@ module.exports = _dereq_("./lib/main")
   ```
   sql.map.register(Number, sql.BigInt);
   ```
-  
+
   @path module.exports.map
   @param {*} jstype JS data type.
   @param {*} sqltype SQL data type.
@@ -29062,13 +29062,13 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Class Connection.
-  
+
   Internally, each `Connection` instance is a separate pool of TDS connections. Once you create a new `Request`/`Transaction`/`Prepared Statement`, a new TDS connection is acquired from the pool and reserved for desired action. Once the action is complete, connection is released back to the pool.
-  
+
   @property {Boolean} connected If true, connection is established.
   @property {Boolean} connecting If true, connection is being established.
   @property {*} driver Reference to configured Driver.
-  
+
   @event connect Dispatched after connection has established.
   @event close Dispatched after connection has closed a pool (by calling close).
    */
@@ -29085,7 +29085,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Create new Connection.
-    	
+
     	@param {Object|String} config Connection configuration object or connection string.
     	@callback [callback] A callback which is called after connection has established, or an error has occurred.
     		@param {Error} err Error on error, otherwise null.
@@ -29156,10 +29156,10 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Initializes driver for this connection. Separated from constructor and used by co-mssql.
-    	
+
     	@private
     	@param {Function} driver Loaded driver.
-    	
+
     	@returns {Connection}
      */
 
@@ -29170,10 +29170,10 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Creates a new connection pool with one active connection. This one initial connection serves as a probe to find out whether the configuration is valid.
-    	
+
     	@callback [callback] A callback which is called after connection has established, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
-    	
+
     	@returns {Connection|Promise}
      */
 
@@ -29246,10 +29246,10 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Close all active connections in the pool.
-    	
+
     	@callback [callback] A callback which is called after connection has closed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
-    	
+
     	@returns {Connection|Promise}
      */
 
@@ -29302,7 +29302,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Returns new request using this connection.
-    	
+
     	@returns {Request}
      */
 
@@ -29313,7 +29313,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Returns new transaction using this connection.
-    	
+
     	@returns {Transaction}
      */
 
@@ -29324,7 +29324,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Creates a new query using this connection from a tagged template string.
-    	
+
     	@param {Array} strings Array of string literals.
     	@param {...*} keys Values.
     	@returns {Request}
@@ -29339,7 +29339,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Creates a new batch using this connection from a tagged template string.
-    	
+
     	@param {Array} strings Array of string literals.
     	@param {...*} keys Values.
     	@returns {Request}
@@ -29358,9 +29358,9 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Class PreparedStatement.
-  
+
   IMPORTANT: Rememeber that each prepared statement means one reserved connection from the pool. Don't forget to unprepare a prepared statement!
-  
+
   @property {Connection} connection Reference to used connection.
   @property {Boolean} multiple If `true`, `execute` will handle multiple recordsets.
   @property {String} statement Prepared SQL statement.
@@ -29397,7 +29397,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Create new Prepared Statement.
-    	
+
     	@param {String} statement SQL statement.
     	@param {Connection} [connection] If ommited, global connection is used instead.
      */
@@ -29418,13 +29418,13 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Add an input parameter to the prepared statement.
-    	
+
     	**Example:**
     	```
     	statement.input('input_parameter', sql.Int);
     	statement.input('input_parameter', sql.VarChar(50));
     	```
-    	
+
     	@param {String} name Name of the input parameter without @ char.
     	@param {*} type SQL data type of input parameter.
     	@returns {PreparedStatement}
@@ -29455,13 +29455,13 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Add an output parameter to the prepared statement.
-    	
+
     	**Example:**
     	```
     	statement.output('output_parameter', sql.Int);
     	statement.output('output_parameter', sql.VarChar(50));
     	```
-    	
+
     	@param {String} name Name of the output parameter without @ char.
     	@param {*} type SQL data type of output parameter.
     	@returns {PreparedStatement}
@@ -29491,7 +29491,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Prepare a statement.
-    	
+
     	@property {String} [statement] SQL statement to prepare.
     	@callback [callback] A callback which is called after preparation has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
@@ -29578,7 +29578,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Execute next request in queue.
-    	
+
     	@private
     	@returns {PreparedStatement}
      */
@@ -29599,7 +29599,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Add request to queue for connection. If queue is empty, execute the request immediately.
-    	
+
     	@private
     	@callback callback A callback to call when connection in ready to execute request.
     		@param {Error} err Error on error, otherwise null.
@@ -29624,7 +29624,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Execute a prepared statement.
-    	
+
     	@property {String} values An object whose names correspond to the names of parameters that were added to the prepared statement before it was prepared.
     	@callback [callback] A callback which is called after execution has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
@@ -29681,7 +29681,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Unprepare a prepared statement.
-    	
+
     	@callback [callback] A callback which is called after unpreparation has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
     	@returns {PreparedStatement|Promise}
@@ -29738,11 +29738,11 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Class Transaction.
-  
+
   @property {Connection} connection Reference to used connection.
   @property {Number} isolationLevel Controls the locking and row versioning behavior of TSQL statements issued by a connection. READ_COMMITTED by default.
   @property {String} name Transaction name. Empty string by default.
-  
+
   @event begin Dispatched when transaction begin.
   @event commit Dispatched on successful commit.
   @event rollback Dispatched on successful rollback.
@@ -29768,7 +29768,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Create new Transaction.
-    	
+
     	@param {Connection} [connection] If ommited, global connection is used instead.
      */
 
@@ -29790,7 +29790,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Begin a transaction.
-    	
+
     	@param {Number} [isolationLevel] Controls the locking and row versioning behavior of TSQL statements issued by a connection.
     	@callback [callback] A callback which is called after transaction has began, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
@@ -29839,7 +29839,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Commit a transaction.
-    	
+
     	@callback [callback] A callback which is called after transaction has commited, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
     	@returns {Transaction|Promise}
@@ -29888,7 +29888,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Execute next request in queue.
-    	
+
     	@private
     	@returns {Transaction}
      */
@@ -29927,7 +29927,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Add request to queue for connection. If queue is empty, execute the request immediately.
-    	
+
     	@private
     	@callback callback A callback to call when connection in ready to execute request.
     		@param {Error} err Error on error, otherwise null.
@@ -29952,7 +29952,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Returns new request using this transaction.
-    	
+
     	@returns {Request}
      */
 
@@ -29963,7 +29963,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Rollback a transaction.
-    	
+
     	@callback [callback] A callback which is called after transaction has rolled back, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
     	@returns {Transaction|Promise}
@@ -30019,14 +30019,14 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Class Request.
-  
+
   @property {Connection} connection Reference to used connection.
   @property {Transaction} transaction Reference to transaction when request was created in transaction.
   @property {*} parameters Collection of input and output parameters.
   @property {Boolean} verbose If `true`, debug messages are printed to message log.
   @property {Boolean} multiple If `true`, `query` will handle multiple recordsets (`execute` always expect multiple recordsets).
   @property {Boolean} canceled `true` if request was canceled.
-  
+
   @event recordset Dispatched when metadata for new recordset are parsed.
   @event row Dispatched when new row is parsed.
   @event done Dispatched when request is complete.
@@ -30057,7 +30057,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Create new Request.
-    	
+
     	@param {Connection|Transaction} connection If ommited, global connection is used instead.
      */
 
@@ -30154,13 +30154,13 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Add an input parameter to the request.
-    	
+
     	**Example:**
     	```
     	request.input('input_parameter', value);
     	request.input('input_parameter', sql.Int, value);
     	```
-    	
+
     	@param {String} name Name of the input parameter without @ char.
     	@param {*} [type] SQL data type of input parameter. If you omit type, module automaticaly decide which SQL data type should be used based on JS data type.
     	@param {*} value Input parameter value. `undefined` and `NaN` values are automatically converted to `null` values.
@@ -30205,13 +30205,13 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Add an output parameter to the request.
-    	
+
     	**Example:**
     	```
     	request.output('output_parameter', sql.Int);
     	request.output('output_parameter', sql.VarChar(50), 'abc');
     	```
-    	
+
     	@param {String} name Name of the output parameter without @ char.
     	@param {*} type SQL data type of output parameter.
     	@param {*} [value] Output parameter value initial value. `undefined` and `NaN` values are automatically converted to `null` values. Optional.
@@ -30255,12 +30255,12 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Execute the SQL batch.
-    
+
     	@param {String} batch T-SQL batch to be executed.
     	@callback [callback] A callback which is called after execution has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
     		@param {*} recordset Recordset.
-    	
+
     	@returns {Request|Promise}
      */
 
@@ -30333,11 +30333,11 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Bulk load.
-    
+
     	@param {Table} table SQL table.
     	@callback [callback] A callback which is called after bulk load has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
-    	
+
     	@returns {Request|Promise}
      */
 
@@ -30409,7 +30409,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Sets request to `stream` mode and pulls all rows from all recordsets to a given stream.
-    	
+
     	@param {Stream} stream Stream to pipe data into.
     	@returns {Stream}
      */
@@ -30430,36 +30430,36 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Execute the SQL command.
-    	
+
     	**Example:**
     	```
     	var request = new sql.Request();
     	request.query('select 1 as number', function(err, recordset) {
     	    console.log(recordset[0].number); // return 1
-    	
+
     	    // ...
     	});
     	```
-    	
+
     	You can enable multiple recordsets in querries by `request.multiple = true` command.
-    	
+
     	```
     	var request = new sql.Request();
     	request.multiple = true;
-    	
+
     	request.query('select 1 as number; select 2 as number', function(err, recordsets) {
     	    console.log(recordsets[0][0].number); // return 1
     	    console.log(recordsets[1][0].number); // return 2
-    	
+
     	    // ...
     	});
     	```
-    	
+
     	@param {String} command T-SQL command to be executed.
     	@callback [callback] A callback which is called after execution has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
     		@param {*} recordset Recordset.
-    	
+
     	@returns {Request|Promise}
      */
 
@@ -30532,7 +30532,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Call a stored procedure.
-    	
+
     	**Example:**
     	```
     	var request = new sql.Request();
@@ -30543,19 +30543,19 @@ module.exports = _dereq_("./lib/main")
     	    console.log(recordset[0].length); // count of rows contained in first recordset
     	    console.log(returnValue); // procedure return value
     	    console.log(recordsets.returnValue); // procedure return value
-    	
+
     	    console.log(request.parameters.output_parameter.value); // output value
-    	
+
     	    // ...
     	});
     	```
-    	
+
     	@param {String} procedure Name of the stored procedure to be executed.
     	@callback [callback] A callback which is called after execution has completed, or an error has occurred. If omited, method returns Promise.
     		@param {Error} err Error on error, otherwise null.
     		@param {Array} recordsets Recordsets.
     		@param {Number} returnValue Procedure return value.
-    	
+
     	@returns {Request|Promise}
      */
 
@@ -30626,7 +30626,7 @@ module.exports = _dereq_("./lib/main")
 
     /*
     	Cancel currently executed request.
-    	
+
     	@returns {Request}
      */
 
@@ -30773,11 +30773,11 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Open global connection.
-  
+
   @param {Object} config Connection configuration.
   @callback callback A callback which is called after connection has established, or an error has occurred.
   	@param {Error} err Error on error, otherwise null.
-  	
+
   @returns {Connection}
    */
 
@@ -30789,7 +30789,7 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Close global connection.
-  	
+
   @returns {Connection}
    */
 
@@ -30800,7 +30800,7 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Attach evnet handler to global connection.
-  
+
   @param {String} event Event name.
   @param {Function} handler Event handler.
   @returns {Connection}
@@ -30813,7 +30813,7 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Creates a new query using global connection from a tagged template string.
-  
+
   @param {Array} strings Array of string literals.
   @param {...*} keys Values.
   @returns {Request}
@@ -30828,7 +30828,7 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Creates a new batch using global connection from a tagged template string.
-  
+
   @param {Array} strings Array of string literals.
   @param {...*} keys Values.
   @returns {Request}
@@ -30893,7 +30893,7 @@ module.exports = _dereq_("./lib/main")
 
   /*
   Initialize Tedious connection pool.
-  
+
   @deprecated
    */
 
@@ -32404,7 +32404,7 @@ function denodeifyWithoutCount(fn) {
     'args[argLength] = cb;',
     'res = fn.apply(self, args);',
     '}',
-    
+
     'if (res &&',
     '(typeof res === "object" || typeof res === "function") &&',
     'typeof res.then === "function"',
@@ -32567,7 +32567,7 @@ module.exports = function privateDecrypt(private_key, enc, reverse) {
   } else {
     padding = 4;
   }
-  
+
   var key = parseKeys(private_key);
   var k = key.modulus.byteLength();
   if (enc.length > k || new bn(enc).cmp(key.modulus) >= 0) {
@@ -38512,13 +38512,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -38527,7 +38527,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -38536,11 +38536,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -38555,9 +38555,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 
@@ -38899,7 +38899,7 @@ exports.login = function (startUri, endUri, callback) {
             if (intermediateIframe) {
                 intermediateIframe.parentNode.removeChild(intermediateIframe);
             }
-            
+
             // Finally, notify the caller
             callback(errorValue, oauthValue);
         },
@@ -38943,7 +38943,7 @@ exports.login = function (startUri, endUri, callback) {
         // For IE8
         window.attachEvent("onmessage", handlePostMessage);
     }
-    
+
     // Permit cancellation, e.g., if the app tries to login again while the popup is still open
     return {
         cancelCallback: function () {
@@ -39039,7 +39039,7 @@ exports.login = function (startUri, endUri, callback) {
 };
 
 function isRunUnderRippleEmulator () {
-    // Returns true when application runs under Ripple emulator 
+    // Returns true when application runs under Ripple emulator
     return window.parent && !!window.parent.ripple;
 }
 
@@ -39179,7 +39179,7 @@ exports.login = function (startUri, endUri, callback) {
     webAuthBrokerErrorCallback = function (error) {
         callback(error, null);
     };
-    // Continuation callback is used when we're running on WindowsPhone which uses 
+    // Continuation callback is used when we're running on WindowsPhone which uses
     // AuthenticateAndContinue method instead of AuthenticateAsync, which uses different async model
     // Continuation callback need to be assigned to Application's 'activated' event.
     webAuthBrokerContinuationCallback = function (activationArgs) {
@@ -39194,10 +39194,10 @@ exports.login = function (startUri, endUri, callback) {
         }
     };
 
-    // If no endURI was given, we construct the startUri with a redirect parameter 
+    // If no endURI was given, we construct the startUri with a redirect parameter
     // pointing to the app SID for single sign on.
-    // Single sign-on requires that the application's Package SID 
-    // be registered with the Microsoft Azure Mobile Service, but it provides a better 
+    // Single sign-on requires that the application's Package SID
+    // be registered with the Microsoft Azure Mobile Service, but it provides a better
     // experience as HTTP cookies are supported so that users do not have to
     // login in everytime the application is launched.
     if (endUri) {
@@ -39209,9 +39209,9 @@ exports.login = function (startUri, endUri, callback) {
         ssoQueryParameter[easyAuthRedirectUriKey] = redirectUri;
         startUri = _.url.combinePathAndQuery(startUri, _.url.getQueryString(ssoQueryParameter));
     }
-    
+
     startUri = new Windows.Foundation.Uri(startUri);
-    
+
     // If authenticateAndContinue method is available, we should use it instead of authenticateAsync.
     // In the event that it exists, but fails (which is the case with Win 10), we fallback to authenticateAsync.
     var isLoginWindowLaunched;
@@ -39348,14 +39348,14 @@ function MobileServiceClient(applicationUrl) {
 
         Validate.isString(tableName, 'tableName');
         Validate.notNullOrEmpty(tableName, 'tableName');
-		
+
         return new MobileServiceSyncTable(tableName, this);
     };
 
     if (Push) {
         this.push = new Push(this, MobileServiceClient._applicationInstallationId);
     }
-    
+
 }
 
 MobileServiceClient.prototype.withFilter = function (serviceFilter) {
@@ -39551,7 +39551,7 @@ MobileServiceClient.prototype.loginWithOptions = Platform.async(
          /// given options.
          /// </summary>
          /// <param name="provider" type="String" mayBeNull="false">
-         /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google', 
+         /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google',
          /// 'windowsazureactivedirectory' (can also use 'aad')
          /// or 'microsoftaccount'.
          /// </param>
@@ -39559,9 +39559,9 @@ MobileServiceClient.prototype.loginWithOptions = Platform.async(
          /// Contains additional parameter information, valid values are:
          ///    token: provider specific object with existing OAuth token to log in with
          ///    useSingleSignOn: Only applies to Windows 8 clients.  Will be ignored on other platforms.
-         /// Indicates if single sign-on should be used. Single sign-on requires that the 
-         /// application's Package SID be registered with the Microsoft Azure Mobile Service, 
-         /// but it provides a better experience as HTTP cookies are supported so that users 
+         /// Indicates if single sign-on should be used. Single sign-on requires that the
+         /// application's Package SID be registered with the Microsoft Azure Mobile Service,
+         /// but it provides a better experience as HTTP cookies are supported so that users
          /// do not have to login in everytime the application is launched.
          ///    parameters: Any additional provider specific query string parameters.
          /// </param>
@@ -39574,14 +39574,14 @@ MobileServiceClient.prototype.loginWithOptions = Platform.async(
 MobileServiceClient.prototype.login = Platform.async(
     function (provider, token, useSingleSignOn, callback) {
         /// <summary>
-        /// Log a user into a Mobile Services application given a provider name and optional 
+        /// Log a user into a Mobile Services application given a provider name and optional
         /// authentication token.
         /// </summary>
         /// <param name="provider" type="String" mayBeNull="true">
-        /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google', 
+        /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google',
         /// 'windowsazureactivedirectory' (can also use 'aad')
         /// or 'microsoftaccount'. If no provider is specified, the 'token' parameter
-        /// is considered a Microsoft Account authentication token. If a provider is specified, 
+        /// is considered a Microsoft Account authentication token. If a provider is specified,
         /// the 'token' parameter is considered a provider-specific authentication token.
         /// </param>
         /// <param name="token" type="Object" mayBeNull="true">
@@ -39589,9 +39589,9 @@ MobileServiceClient.prototype.login = Platform.async(
         /// </param>
         /// <param name="useSingleSignOn" type="Boolean" mayBeNull="true">
         /// Only applies to Windows 8 clients.  Will be ignored on other platforms.
-        /// Indicates if single sign-on should be used. Single sign-on requires that the 
-        /// application's Package SID be registered with the Microsoft Azure Mobile Service, 
-        /// but it provides a better experience as HTTP cookies are supported so that users 
+        /// Indicates if single sign-on should be used. Single sign-on requires that the
+        /// application's Package SID be registered with the Microsoft Azure Mobile Service,
+        /// but it provides a better experience as HTTP cookies are supported so that users
         /// do not have to login in everytime the application is launched.
         /// </param>
         /// <param name="callback" type="Function" mayBeNull="true">
@@ -39607,7 +39607,7 @@ MobileServiceClient.prototype.logout = Platform.async(function(callback) {
     /// Optional callback accepting error as a parameter.
     /// </param>
     /// </summary>
-    
+
     this.currentUser = null;
     callback();
 });
@@ -39624,7 +39624,7 @@ MobileServiceClient.prototype.invokeApi = Platform.async(
         /// Contains additional parameter information, valid values are:
         /// body: The body of the HTTP request.
         /// method: The HTTP method to use in the request, with the default being POST,
-        /// parameters: Any additional query string parameters, 
+        /// parameters: Any additional query string parameters,
         /// headers: HTTP request headers, specified as an object.
         /// </param>
         /// <param name="callback" type="Function" mayBeNull="true">
@@ -39787,6 +39787,8 @@ var _ = _dereq_('./Utilities/Extensions');
 var Validate = _dereq_('./Utilities/Validate');
 var Platform = _dereq_('Platforms/Platform');
 
+window.Platform = window['Platform'] || Platform; // ROB HACK TO ENABLE HOOKING XHR
+
 var loginUrl = ".auth/login";
 var loginDone = "done";
 var sessionModeKey = 'session_mode';
@@ -39847,7 +39849,7 @@ MobileServiceLogin.prototype.loginWithOptions = function (provider, options, cal
     /// given options.
     /// </summary>
     /// <param name="provider" type="String" mayBeNull="false">
-    /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google', 
+    /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google',
     /// 'windowsazureactivedirectory' (can also use 'aad')
     /// or 'microsoftaccount'.
     /// </param>
@@ -39855,9 +39857,9 @@ MobileServiceLogin.prototype.loginWithOptions = function (provider, options, cal
     /// Contains additional parameter information, valid values are:
     ///    token: provider specific object with existing OAuth token to log in with
     ///    useSingleSignOn: Only applies to Windows 8 clients.  Will be ignored on other platforms.
-    /// Indicates if single sign-on should be used. Single sign-on requires that the 
-    /// application's Package SID be registered with the Microsoft Azure Mobile Service, 
-    /// but it provides a better experience as HTTP cookies are supported so that users 
+    /// Indicates if single sign-on should be used. Single sign-on requires that the
+    /// application's Package SID be registered with the Microsoft Azure Mobile Service,
+    /// but it provides a better experience as HTTP cookies are supported so that users
     /// do not have to login in everytime the application is launched.
     ///    parameters: Any additional provider specific query string parameters.
     /// </param>
@@ -39903,9 +39905,9 @@ MobileServiceLogin.prototype.login = function (provider, token, useSingleSignOn,
     /// </param>
     /// <param name="useSingleSignOn" type="Boolean" mayBeNull="true">
     /// Only applies to Windows 8 clients.  Will be ignored on other platforms.
-    /// Indicates if single sign-on should be used. Single sign-on requires that the 
-    /// application's Package SID be registered with the Microsoft Azure Mobile Service, 
-    /// but it provides a better experience as HTTP cookies are supported so that users 
+    /// Indicates if single sign-on should be used. Single sign-on requires that the
+    /// application's Package SID be registered with the Microsoft Azure Mobile Service,
+    /// but it provides a better experience as HTTP cookies are supported so that users
     /// do not have to login in everytime the application is launched.
     /// </param>
     /// <param name="callback" type="Function"  mayBeNull="true">
@@ -40012,7 +40014,7 @@ MobileServiceLogin.prototype.loginWithProvider = function (provider, token, useS
     /// login in everytime the application is launched. Is false be default.
     /// </param>
     /// <param name="parameters" type="Object">
-    /// Any additional provider specific query string parameters. 
+    /// Any additional provider specific query string parameters.
     /// </param>
     /// <param name="callback" type="Function">
     /// The callback to execute when the login completes: callback(error, user).
@@ -40127,7 +40129,7 @@ function loginWithProviderAndToken(login, provider, token, parameters, callback)
     /// The login instance that holds the context used with the login process.
     /// </param>
     /// <param name="provider" type="String">
-    /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google', or 
+    /// Name of the authentication provider to use; one of 'facebook', 'twitter', 'google', or
     /// 'microsoftaccount'. The provider should already have been validated.
     /// </param>
     /// <param name="token" type="Object">
@@ -40156,7 +40158,7 @@ function loginWithProviderAndToken(login, provider, token, parameters, callback)
         url = _.url.combinePathAndQuery(url, queryString);
     }
 
-    // Invoke the POST endpoint to exchange provider-specific token for a 
+    // Invoke the POST endpoint to exchange provider-specific token for a
     // Microsoft Azure Mobile Services token
     client._request(
         'POST',
@@ -40339,9 +40341,9 @@ MobileServiceTable.prototype._read = function (query, parameters, callback) {
             callback = parameters;
             parameters = null;
             if (!_.isNull(query) && _.isObject(query)) {
-                // This 'query' argument could be either the query or the user-defined 
-                // parameters object since both are optional.  A query is either (a) a simple string 
-                // or (b) an Object with an toOData member. A user-defined parameters object is just 
+                // This 'query' argument could be either the query or the user-defined
+                // parameters object since both are optional.  A query is either (a) a simple string
+                // or (b) an Object with an toOData member. A user-defined parameters object is just
                 // an Object.  We need to detect which of these has been passed in here.
                 if (!_.isString(query) && _.isNull(query.toOData)) {
                     parameters = query;
@@ -40378,7 +40380,7 @@ MobileServiceTable.prototype._read = function (query, parameters, callback) {
             if (components.table) {
                 // If the query has a table name, make sure it's compatible with
                 // the table executing the query
-                
+
                 if (tableName !== components.table) {
                     var message = _.format(Platform.getResourceString("MobileServiceTable_ReadMismatchedQueryTables"), tableName, components.table);
                     callback(_.createError(message), null);
@@ -40405,7 +40407,7 @@ MobileServiceTable.prototype._read = function (query, parameters, callback) {
             queryString = userDefinedQueryString;
         }
     }
-    
+
     // Construct the URL
     var urlFragment = queryString;
     if (!_.url.isAbsoluteUrl(urlFragment)) {
@@ -40808,7 +40810,7 @@ MobileServiceTable.prototype.del = Platform.async(
         if (_.isNull(callback) && (typeof parameters === 'function')) {
             callback = parameters;
             parameters = null;
-        }        
+        }
 
         // Validate the arguments
         Validate.notNull(instance, 'instance');
@@ -40944,7 +40946,7 @@ module.exports = MobileServiceTable;
  * @file SQLite implementation of the local store.
  * This uses the https://www.npmjs.com/package/cordova-sqlite-storage Cordova plugin.
  */
- 
+
 var Platform = _dereq_('Platforms/Platform'),
     Validate = _dereq_('../../Utilities/Validate'),
     _ = _dereq_('../../Utilities/Extensions'),
@@ -40978,7 +40980,7 @@ var MobileServiceSqliteStore = function (dbName) {
     /**
      * Initializes the store
      * A handle to the underlying sqlite store will be opened as part of initialization.
-     * 
+     *
      * @returns A promise that is resolved when the initialization is complete OR rejected if it fails
      */
     this.init = function() {
@@ -41007,7 +41009,7 @@ var MobileServiceSqliteStore = function (dbName) {
 
     /**
      * Closes the handle to the underlying sqlite store.
-     * 
+     *
      * @returns A promise that is resolved when the sqlite store is closed successfully OR rejected if it fails.
      */
     this.close = function() {
@@ -41030,7 +41032,7 @@ var MobileServiceSqliteStore = function (dbName) {
     /**
      * Defines the schema of the SQLite table
      * @param tableDefinition An object that defines the table, i.e. the table name and columns
-     * 
+     *
      * Example of a valid tableDefinition object:
      * name: "todoItemTable",
      * columnDefinitions : {
@@ -41042,7 +41044,7 @@ var MobileServiceSqliteStore = function (dbName) {
      * }
      *
      * If a table with the same name already exists, the newly defined columns in the table definition will be added to the table.
-     * If no table with the same name exists, a table with the specified schema will be created.  
+     * If no table with the same name exists, a table with the specified schema will be created.
      *
      * @returns A promise that is resolved when the operation is completed successfully OR rejected with the error if it fails.
      */
@@ -41054,7 +41056,7 @@ var MobileServiceSqliteStore = function (dbName) {
             tableDefinition = JSON.parse(JSON.stringify(tableDefinition)); // clone the table definition as we will need it later
 
             // Initialize the store before defining the table
-            // If the store is already initialized, calling init() will have no effect. 
+            // If the store is already initialized, calling init() will have no effect.
             return self._init().then(function() {
                 return Platform.async(function(callback) {
                     self._db.transaction(function(transaction) {
@@ -41063,7 +41065,7 @@ var MobileServiceSqliteStore = function (dbName) {
                         var pragmaStatement = _.format("PRAGMA table_info({0});", tableDefinition.name);
                         transaction.executeSql(pragmaStatement, [], function (transaction, result) {
 
-                            // Check if a table with the specified name exists 
+                            // Check if a table with the specified name exists
                             if (result.rows.length > 0) { // table already exists, add missing columns.
 
                                 // Get a list of columns present in the SQLite table
@@ -41074,7 +41076,7 @@ var MobileServiceSqliteStore = function (dbName) {
                                 }
 
                                 addMissingColumns(transaction, tableDefinition, existingColumns);
-                                
+
                             } else { // table does not exist, create it.
                                 createTable(transaction, tableDefinition);
                             }
@@ -41084,7 +41086,7 @@ var MobileServiceSqliteStore = function (dbName) {
                     callback,
                     function(result) {
                         // Table definition is successful, update the in-memory list of table definitions.
-                        var error; 
+                        var error;
                         try {
                             storeHelper.addTableDefinition(tableDefinitions, tableDefinition);
                         } catch (err) {
@@ -41100,10 +41102,10 @@ var MobileServiceSqliteStore = function (dbName) {
     /**
      * Updates or inserts one or more objects in the local table
      * If a property does not have a corresponding definition in tableDefinition, it will not be upserted into the table.
-     * 
+     *
      * @param tableName Name of the local table in which data is to be upserted.
      * @param data A single object OR an array of objects to be inserted/updated in the table
-     * 
+     *
      * @returns A promise that is resolved when the operation is completed successfully OR rejected with the error if it fails.
      */
     this.upsert = function (tableName, data) {
@@ -41118,9 +41120,9 @@ var MobileServiceSqliteStore = function (dbName) {
             })();
         });
     };
-    
+
     // Performs the upsert operation.
-    // This method validates all arguments, callers can skip validation. 
+    // This method validates all arguments, callers can skip validation.
     this._upsert = function (transaction, tableName, data) {
 
         Validate.isObject(transaction);
@@ -41180,7 +41182,7 @@ var MobileServiceSqliteStore = function (dbName) {
             if (_.isNull(records[i])) {
                 continue;
             }
-            
+
             record = records[i];
 
             // Reset the variables dirtied in the previous iteration of the loop.
@@ -41195,14 +41197,14 @@ var MobileServiceSqliteStore = function (dbName) {
                 insertColumnNames.push(property);
                 insertParams.push('?');
                 insertValues.push(record[property]);
-                
+
                 if (!storeHelper.isId(property)) {
                     updateColumnNames.push(property);
                     updateExpressions.push(property + ' = ?');
                     updateValues.push(record[property]);
                 }
             }
-            
+
             // Insert the instance. If one with the same id already exists, ignore it.
             statements.push(_.format("INSERT OR IGNORE INTO {0} ({1}) VALUES ({2})", tableName, insertColumnNames.join(), insertParams.join()));
             parameters.push(insertValues);
@@ -41226,16 +41228,16 @@ var MobileServiceSqliteStore = function (dbName) {
 
     /**
      * Perform a record lookup in the local table
-     * 
+     *
      * @param tableName Name of the local table in which lookup is to be performed
      * @param id ID of the object to be looked up
      * @param {boolean} [suppressRecordNotFoundError] If set to true, lookup will return an undefined object if the record is not found.
-     *                                                Otherwise, lookup will fail. 
+     *                                                Otherwise, lookup will fail.
      *                                                This flag is useful to distinguish between a lookup failure due to the record not being present in the table
      *                                                versus a genuine failure in performing the lookup operation
-     * 
-     * @returns Promise that will be resolved with the looked up object when the operation completes successfully OR 
-     * rejected with the error if it fials. 
+     *
+     * @returns Promise that will be resolved with the looked up object when the operation completes successfully OR
+     * rejected with the error if it fials.
      */
     this.lookup = function (tableName, id, suppressRecordNotFoundError) {
         var self = this;
@@ -41244,7 +41246,7 @@ var MobileServiceSqliteStore = function (dbName) {
             Validate.isString(tableName, 'tableName');
             Validate.notNullOrEmpty(tableName, 'tableName');
             Validate.isValidId(id, 'id');
-            
+
             var tableDefinition = storeHelper.getTableDefinition(tableDefinitions, tableName);
             if (_.isNull(tableDefinition)) {
                 throw new Error('Definition not found for table "' + tableName + '"');
@@ -41284,12 +41286,12 @@ var MobileServiceSqliteStore = function (dbName) {
 
     /**
      * Deletes one or more records from the local table
-     * 
+     *
      * @param tableNameOrQuery Either the name of the local table in which delete is to be performed,
      *                         Or a QueryJS object defining records to be deleted.
      * @param ids A single ID or an array of IDs of records to be deleted
      *            This argument is expected only if the first argument is table name and not a QueryJS object.
-     * 
+     *
      * @returns Promise that is resolved when the operation completes successfully or rejected with the error if it fails.
      */
     this.del = function (tableNameOrQuery, ids) {
@@ -41307,7 +41309,7 @@ var MobileServiceSqliteStore = function (dbName) {
                     if (!_.isArray(ids)) {
                         ids = [ids];
                     }
-                    
+
                     self._db.transaction(function(transaction) {
                         for (var i in ids) {
                             if (! _.isNull(ids[i])) {
@@ -41327,12 +41329,12 @@ var MobileServiceSqliteStore = function (dbName) {
             })();
         });
     };
-    
+
     // Deletes the records selected by the specified query and notifies the callback.
     this._deleteUsingQuery = function (query, callback) {
 
         var self = this;
-    
+
         // The query can have a 'select' clause that queries only specific columns. However, we need to know the ID value
         // to be able to delete records. So we explicitly remove selection from the query, if any.
         var components = query.getComponents();
@@ -41383,7 +41385,7 @@ var MobileServiceSqliteStore = function (dbName) {
                 deleteParams.push(ids[i]);
             }
         }
-        
+
         var deleteStatement = _.format("DELETE FROM {0} WHERE {1} in ({2})", tableName, idPropertyName, deleteExpressions.join());
         if (this._editStatement) { // test hook
             deleteStatement = this._editStatement(deleteStatement);
@@ -41393,7 +41395,7 @@ var MobileServiceSqliteStore = function (dbName) {
 
     /**
      * Read a local table
-     * 
+     *
      * @param query A QueryJS object representing the query to use while reading the table
      * @returns A promise that is resolved with the read results when the operation is completed successfully or rejected with
      *          the error if it fails.
@@ -41427,7 +41429,7 @@ var MobileServiceSqliteStore = function (dbName) {
                 }
 
                 // The first statement gets the query results. Execute it.
-                // TODO: Figure out a better way to determine what the statements in the array correspond to.    
+                // TODO: Figure out a better way to determine what the statements in the array correspond to.
                 transaction.executeSql(statements[0].sql, getStatementParameters(statements[0]), function (transaction, res) {
                     var record;
                     for (var j = 0; j < res.rows.length; j++) {
@@ -41457,25 +41459,25 @@ var MobileServiceSqliteStore = function (dbName) {
             });
         }.bind(this))();
     };
-    
+
     /**
      * Executes the specified operations as part of a single SQL transaction.
-     * 
+     *
      * @param operations Array of operations to be performed. Each operation in the array is an object of the following form:
      * {
      *      action: 'upsert',
      *      tableName: name of the table,
      *      data: record / object to be upserted
      * }
-     * 
+     *
      * OR
-     * 
+     *
      * {
      *      action: 'delete',
      *      tableName: name of the table,
      *      id: ID of the record to be deleted
      * }
-     * 
+     *
      * @returns A promise that is resolved when the operations are completed successfully OR rejected with the error if they fail.
      */
     this.executeBatch = function (operations) {
@@ -41487,17 +41489,17 @@ var MobileServiceSqliteStore = function (dbName) {
                 self._db.transaction(function(transaction) {
                     for (var i in operations) {
                         var operation = operations[i];
-                        
+
                         if (_.isNull(operation)) {
                             continue;
                         }
-                        
+
                         Validate.isString(operation.action);
                         Validate.notNullOrEmpty(operation.action);
 
                         Validate.isString(operation.tableName);
                         Validate.notNullOrEmpty(operation.tableName);
-                        
+
                         if (operation.action.toLowerCase() === 'upsert') {
                             self._upsert(transaction, operation.tableName, operation.data);
                         } else if (operation.action.toLowerCase() === 'delete') {
@@ -41519,13 +41521,13 @@ var MobileServiceSqliteStore = function (dbName) {
 
 // Converts the QueryJS object into equivalent SQLite statements
 function getSqlStatementsFromQuery(query) {
-    
+
     // Convert QueryJS object to an OData query string
     var odataQuery = Query.Providers.OData.toOData(query);
-    
+
     // Convert the OData query string into equivalent SQLite statements
     var statements = formatSql(odataQuery, { flavor: 'sqlite' });
-    
+
     return statements;
 }
 
@@ -41542,7 +41544,7 @@ function getStatementParameters(statement) {
     return params;
 }
 
-// Creates a table as per the specified definition and as part of the specified SQL transaction. 
+// Creates a table as per the specified definition and as part of the specified SQL transaction.
 function createTable(transaction, tableDefinition) {
 
     var columnDefinitions = tableDefinition.columnDefinitions;
@@ -41559,7 +41561,7 @@ function createTable(transaction, tableDefinition) {
 
         columnDefinitionClauses.push(columnDefinitionClause);
     }
-    
+
     var createTableStatement = _.format("CREATE TABLE [{0}] ({1})", tableDefinition.name, columnDefinitionClauses.join());
 
     transaction.executeSql(createTableStatement);
@@ -41594,15 +41596,15 @@ module.exports = MobileServiceSqliteStore;
 
 /**
  * Defines Cordova implementation of target independent APIs.
- * For now, the browser implementation works as-is for Cordova, so we 
+ * For now, the browser implementation works as-is for Cordova, so we
  * just reuse the browser definitions.
  */
 
 var browserExports = _dereq_('../web/Platform');
 
-// Add each export individually to module.exports instead of 
+// Add each export individually to module.exports instead of
 // simply returning browserExports to work around a limitation / bug
-// in browserify's cyclic dependency handling 
+// in browserify's cyclic dependency handling
 for (var i in browserExports) {
     module.exports[i] = browserExports[i];
 }
@@ -41639,7 +41641,7 @@ var Platform = _dereq_('Platforms/Platform'),
 /**
  * Gets the SQLite type that matches the specified ColumnType.
  * @param columnType - The type of values that will be stored in the SQLite table
- * @throw Will throw an error if columnType is not supported 
+ * @throw Will throw an error if columnType is not supported
  */
 function getSqliteType (columnType) {
     var sqliteType;
@@ -41671,15 +41673,15 @@ function getSqliteType (columnType) {
 
 /**
  * Checks if the value can be stored in a table column of the specified type.
- * Example: Float values can be stored in column of type ColumnType.Float but not ColumnType.Integer. 
+ * Example: Float values can be stored in column of type ColumnType.Float but not ColumnType.Integer.
  */
 function isJSValueCompatibleWithColumnType(value, columnType) {
-    
+
     // Allow NULL values to be stored in columns of any type
     if (_.isNull(value)) {
         return true;
     }
-    
+
     switch (columnType) {
         case ColumnType.Object:
             return _.isObject(value);
@@ -41707,16 +41709,16 @@ function isJSValueCompatibleWithColumnType(value, columnType) {
  * Checks if the SQLite value matches the specified ColumnType.
  * A value read from a SQLite table can be incompatible with the specified column type, if it was stored
  * in the table using a column type different from columnType.
- * Example: If a non-integer numeric value is stored in a column of type ColumnType.Float and 
- * then deserialized into a column of type ColumnType.Integer, that will be an error. 
+ * Example: If a non-integer numeric value is stored in a column of type ColumnType.Float and
+ * then deserialized into a column of type ColumnType.Integer, that will be an error.
  */
 function isSqliteValueCompatibleWithColumnType(value, columnType) {
-    
+
     // Null is a valid value for any column type
     if (_.isNull(value)) {
         return true;
     }
-    
+
     switch (columnType) {
         case ColumnType.Object:
             return _.isString(value);
@@ -41763,19 +41765,19 @@ function serialize (value, columnDefinitions) {
     try {
         Validate.notNull(columnDefinitions, 'columnDefinitions');
         Validate.isObject(columnDefinitions);
-        
+
         Validate.notNull(value);
         Validate.isObject(value);
 
         for (var property in value) {
 
             var columnType = storeHelper.getColumnType(columnDefinitions, property);
-            // Skip properties that don't match any column in the table 
+            // Skip properties that don't match any column in the table
             if (!_.isNull(columnType)) {
                 serializedValue[property] = serializeMember(value[property], columnType);
             }
         }
-        
+
     } catch (error) {
         throw new verror.VError(error, 'Failed to serialize value ' + JSON.stringify(value) + '. Column definitions: ' + JSON.stringify(columnDefinitions));
     }
@@ -41789,7 +41791,7 @@ function serialize (value, columnDefinitions) {
 function deserialize (value, columnDefinitions) {
 
     var deserializedValue = {};
-    
+
     try {
         Validate.notNull(columnDefinitions, 'columnDefinitions');
         Validate.isObject(columnDefinitions);
@@ -41801,7 +41803,7 @@ function deserialize (value, columnDefinitions) {
             var columnName = storeHelper.getColumnName(columnDefinitions, property); // this helps us deserialize with proper case for the property name
             deserializedValue[columnName] = deserializeMember(value[property], storeHelper.getColumnType(columnDefinitions, property));
         }
-        
+
     } catch (error) {
         throw new verror.VError(error, 'Failed to deserialize value ' + JSON.stringify(value) + '. Column definitions: ' + JSON.stringify(columnDefinitions));
     }
@@ -41810,10 +41812,10 @@ function deserialize (value, columnDefinitions) {
 }
 
 /**
- * Serializes a property of an object into a value which can be stored in a SQLite column of type columnType. 
+ * Serializes a property of an object into a value which can be stored in a SQLite column of type columnType.
  */
 function serializeMember(value, columnType) {
-    
+
     // Start by checking if the specified column type is valid
     if (!isColumnTypeValid(columnType)) {
         throw new Error('Column type ' + columnType + ' is not supported');
@@ -41825,10 +41827,10 @@ function serializeMember(value, columnType) {
     }
 
     // If we are here, it means we are good to proceed with serialization
-    
+
     var sqliteType = getSqliteType(columnType),
         serializedValue;
-    
+
     switch (sqliteType) {
         case "TEXT":
             serializedValue = typeConverter.convertToText(value);
@@ -41842,15 +41844,15 @@ function serializeMember(value, columnType) {
         default:
             throw new Error('Column type ' + columnType + ' is not supported');
     }
-    
+
     return serializedValue;
 }
 
 // Deserializes a property of an object read from SQLite into a value of type columnType
 function deserializeMember(value, columnType) {
-    
+
     // Handle this special case first.
-    // Simply return 'value' if a corresponding columnType is not defined.   
+    // Simply return 'value' if a corresponding columnType is not defined.
     if (!columnType) {
         return value;
     }
@@ -41867,7 +41869,7 @@ function deserializeMember(value, columnType) {
     }
 
     // If we are here, it means we are good to proceed with deserialization
-    
+
     var deserializedValue, error;
 
     switch (columnType) {
@@ -41962,7 +41964,7 @@ function validateTableDefinition(tableDefinition) {
     // Validate the specified column types and check for duplicate columns
     var columnDefinitions = tableDefinition.columnDefinitions,
         definedColumns = {};
-    
+
     Validate.isObject(columnDefinitions);
     Validate.notNull(columnDefinitions);
 
@@ -42084,7 +42086,7 @@ var Validate = _dereq_('../../Utilities/Validate'),
     verror = _dereq_('verror');
 
 exports.convertToText = function (value) {
-    
+
     if (_.isNull(value)) // undefined/null value should be converted to null
         return null;
 
@@ -42107,7 +42109,7 @@ exports.convertToInteger = function (value) {
     if (_.isBool(value)) {
         return value ? 1 : 0;
     }
-    
+
     if (_.isDate(value)) {
         return value.getTime();
     }
@@ -42127,7 +42129,7 @@ exports.convertToBoolean = function (value) {
     if (_.isInteger(value)) {
         return value === 0 ? false : true;
     }
-        
+
     throw new Error(_.format(Platform.getResourceString('sqliteSerializer_UnsupportedTypeConversion'), JSON.stringify(value), typeof value, 'Boolean'));
 };
 
@@ -42142,7 +42144,7 @@ exports.convertToDate = function (value) {
 
     if (_.isInteger(value)) {
         return new Date(value);
-    } 
+    }
 
     throw new Error(_.format(Platform.getResourceString('sqliteSerializer_UnsupportedTypeConversion'), JSON.stringify(value), typeof value, 'Date'));
 };
@@ -42172,17 +42174,17 @@ exports.convertToObject = function (value) {
     try {
         if (_.isString(value)) {
             var result = JSON.parse(value);
-            
+
             // Make sure the deserialized value is indeed an object, and not some other type
             if (_.isObject(result)) {
                 return result;
-            } 
+            }
         }
     } catch(err) {
-        error = err; 
+        error = err;
     }
 
-    throw new verror.VError(error, Platform.getResourceString('sqliteSerializer_UnsupportedTypeConversion'), JSON.stringify(value), typeof value, 'Object');    
+    throw new verror.VError(error, Platform.getResourceString('sqliteSerializer_UnsupportedTypeConversion'), JSON.stringify(value), typeof value, 'Object');
 };
 
 exports.convertToArray = function (value) {
@@ -42198,17 +42200,17 @@ exports.convertToArray = function (value) {
     try {
         if (_.isString(value)) {
             var result = JSON.parse(value);
-            
+
             // Make sure the deserialized value is indeed an object, and not some other type
             if (_.isArray(result)) {
                 return result;
-            } 
+            }
         }
     } catch(err) {
-        error = err; 
+        error = err;
     }
 
-    throw new verror.VError(error, Platform.getResourceString('sqliteSerializer_UnsupportedTypeConversion'), JSON.stringify(value), typeof value, 'Array');    
+    throw new verror.VError(error, Platform.getResourceString('sqliteSerializer_UnsupportedTypeConversion'), JSON.stringify(value), typeof value, 'Array');
 };
 
 },{"../../Utilities/Extensions":198,"../../Utilities/Validate":201,"verror":178}],194:[function(_dereq_,module,exports){
@@ -42258,7 +42260,7 @@ exports.async = function async(func) {
     /// operation (i.e., keep using callbacks or switch to promises).
     /// </summary>
     /// <param name="func" type="Function">
-    /// An async function with a callback as its last parameter 
+    /// An async function with a callback as its last parameter
     /// </param>
     /// <returns type="Function">
     /// Function that when invoked will return a promise.
@@ -42416,7 +42418,7 @@ exports.tryParseIsoDateString = function (text) {
     var matchedDate = isoDateRegex.exec(text);
     if (matchedDate) {
         // IE9 only handles precisely 0 or 3 decimal places when parsing ISO dates,
-        // and IE8 doesn't parse them at all. Fortunately, all browsers can handle 
+        // and IE8 doesn't parse them at all. Fortunately, all browsers can handle
         // 'yyyy/mm/dd hh:MM:ss UTC' (without fractional seconds), so we can rewrite
         // the date to that format, and the apply fractional seconds.
         var dateWithoutFraction = matchedDate[1],
@@ -42712,7 +42714,7 @@ function whenBridgeLoaded(originRoot, callback) {
                 handleBridgeLoaded = function() {
                     complete(bridgeFrame);
                 };
-            
+
             if (bridgeFrame.addEventListener) {
                 bridgeFrame.addEventListener("load", handleBridgeLoaded, false);
             } else {
@@ -42721,7 +42723,7 @@ function whenBridgeLoaded(originRoot, callback) {
             }
 
             bridgeFrame.src = originRoot + "/crossdomain/bridge?origin=" + encodeURIComponent(callerOrigin);
-            
+
             // Try to keep it invisible, even if someone does $("iframe").show()
             bridgeFrame.setAttribute("width", 0);
             bridgeFrame.setAttribute("height", 0);
@@ -42759,7 +42761,7 @@ exports.isNull = function (value) {
     /// <returns type="Boolean">
     /// A value indicating whether the provided value is null (or undefined).
     /// </returns>
-    
+
     return value === null || value === undefined;
 };
 
@@ -43231,7 +43233,7 @@ exports.url = {
         /// </summary>
         /// <param name="parameters" type="Object">The parameters from which to create a query string.</param>
         /// <returns type="String">A query string</returns>
-        
+
         Validate.notNull(parameters, 'parameters');
         Validate.isObject(parameters, 'parameters');
 
@@ -43462,7 +43464,7 @@ PostMessageExchange.prototype._handleMessage = function (evt) {
         pendingMessage = messageId && this._pendingMessages[messageId],
         isValidReply = pendingMessage && pendingMessage.targetWindow === evt.source &&
                        pendingMessage.origin === getOriginRoot(evt.origin);
-    
+
     if (isValidReply) {
         global.clearTimeout(pendingMessage.timeoutId); // No point holding this in memory until the timeout expires
         delete this._pendingMessages[messageId];
@@ -43700,8 +43702,8 @@ exports.isDate = function (value, name) {
     /// <param name="name" mayBeNull="true" optional="true" type="String">
     /// Optional name of the value to throw.
     /// </param>
-    
-    exports.notNull(value, name);    
+
+    exports.notNull(value, name);
     if (!_.isDate(value)) {
         throw _.format(
             Platform.getResourceString("TypeCheckError"),
@@ -43903,14 +43905,14 @@ var Validate = _dereq_('./Validate'),
     Platform = _dereq_('Platforms/Platform');
 
 module.exports = function () {
-    
-    var queue = [], // queue of pending tasks 
+
+    var queue = [], // queue of pending tasks
         isBusy; // true if a task is executing
-    
+
     return {
         run: run
     };
-    
+
     /**
      * Runs the specified task asynchronously after all the earlier tasks have completed
      * @param task Function / task to be executed. The task can either be a synchronous function or can return a promise.
@@ -43921,7 +43923,7 @@ module.exports = function () {
             // parameter validation
             Validate.isFunction(task);
             Validate.isFunction(callback);
-            
+
             // Add the task to the queue of pending tasks and trigger task processing
             queue.push({
                 task: task,
@@ -43930,7 +43932,7 @@ module.exports = function () {
             processTask();
         })();
     }
-    
+
     /**
      * Asynchronously executes the first pending task
      */
@@ -43979,7 +43981,7 @@ module.exports = {
         TableReadRaw: "TR",              // Table reads where the caller uses a raw query string to determine the items to be returned
         TableReadQuery: "TQ",            // Table reads where the caller uses a function / query OM to determine the items to be returned
         OfflineSync: "OL",               // Table operations performed as part of offline sync (push and pull)
-        IncrementalPull: "IP"            // Table reads performed as part of an incremental pull 
+        IncrementalPull: "IP"            // Table reads performed as part of an incremental pull
     },
     apiVersionHeaderName: "ZUMO-API-VERSION",
     apiVersion: "2.0.0",
@@ -44004,7 +44006,7 @@ module.exports = {
 
 var _ = _dereq_('./Utilities/Extensions');
 
-// Modules that need to be exposed outside the SDK for all targets 
+// Modules that need to be exposed outside the SDK for all targets
 var api = {
     MobileServiceClient: _dereq_('./MobileServiceClient'),
     MobileServiceLogin: _dereq_('./MobileServiceLogin'),
@@ -44069,7 +44071,7 @@ var Validate = _dereq_('../Utilities/Validate'),
 
 // NOTE: The store can be a custom store provided by the user code.
 // So we do parameter validation ourselves without delegating it to the
-// store, even where it is possible.  
+// store, even where it is possible.
 
 /**
  * Creates an instance of MobileServiceSyncContext
@@ -44078,7 +44080,7 @@ var Validate = _dereq_('../Utilities/Validate'),
 function MobileServiceSyncContext(client) {
 
     Validate.notNull(client, 'client');
-    
+
     var store,
         operationTableManager,
         pullManager,
@@ -44095,11 +44097,11 @@ function MobileServiceSyncContext(client) {
      *          If the operation fails, the promise is rejected
      */
     this.initialize = function (localStore) {
-        
+
         return Platform.async(function(callback) {
             Validate.isObject(localStore);
             Validate.notNull(localStore);
-            
+
             callback(null, createOperationTableManager(localStore));
         })().then(function(opManager) {
             operationTableManager = opManager;
@@ -44114,23 +44116,23 @@ function MobileServiceSyncContext(client) {
         }).then(function() {
             isInitialized = true;
         });
-        
+
     };
 
     /**
      * Insert a new object into the specified local table.
-     * 
+     *
      * @param tableName Name of the local table in which the object is to be inserted
      * @param instance The object to be inserted into the table
-     * 
+     *
      * @returns A promise that is resolved with the inserted object when the operation is completed successfully.
      * If the operation fails, the promise is rejected
      */
     this.insert = function (tableName, instance) { //TODO: add an insert method to the store
         return storeTaskRunner.run(function() {
             validateInitialization();
-            
-            // Generate an ID if it is not set already 
+
+            // Generate an ID if it is not set already
             if (_.isNull(instance.id)) {
                 instance.id = uuid.v4();
             }
@@ -44142,17 +44144,17 @@ function MobileServiceSyncContext(client) {
 
     /**
      * Update an object in the specified local table.
-     * 
+     *
      * @param tableName Name of the local table in which the object is to be updated
      * @param instance The object to be updated
-     * 
-     * @returns A promise that is resolved when the operation is completed successfully. 
+     *
+     * @returns A promise that is resolved when the operation is completed successfully.
      * If the operation fails, the promise is rejected.
      */
     this.update = function (tableName, instance) { //TODO: add an update method to the store
         return storeTaskRunner.run(function() {
             validateInitialization();
-            
+
             // Delegate parameter validation to upsertWithLogging
             return upsertWithLogging(tableName, instance, 'update', true /* shouldOverwrite */);
         });
@@ -44160,22 +44162,22 @@ function MobileServiceSyncContext(client) {
 
     /**
      * Gets an object from the specified local table.
-     * 
+     *
      * @param tableName Name of the local table to be used for performing the object lookup
      * @param id ID of the object to get from the table.
      * @param {boolean} [suppressRecordNotFoundError] If set to true, lookup will return an undefined object if the record is not found.
-     *                                                Otherwise, lookup will fail. 
+     *                                                Otherwise, lookup will fail.
      *                                                This flag is useful to distinguish between a lookup failure due to the record not being present in the table
      *                                                versus a genuine failure in performing the lookup operation
-     * 
+     *
      * @returns A promise that is resolved with the looked up object when the operation is completed successfully.
      * If the operation fails, the promise is rejected.
      */
     this.lookup = function (tableName, id, suppressRecordNotFoundError) {
-        
+
         return Platform.async(function(callback) {
             validateInitialization();
-            
+
             Validate.isString(tableName, 'tableName');
             Validate.notNullOrEmpty(tableName, 'tableName');
 
@@ -44184,7 +44186,7 @@ function MobileServiceSyncContext(client) {
             if (!store) {
                 throw new Error('MobileServiceSyncContext not initialized');
             }
-            
+
             callback();
         })().then(function() {
             return store.lookup(tableName, id, suppressRecordNotFoundError);
@@ -44194,13 +44196,13 @@ function MobileServiceSyncContext(client) {
 
     /**
      * Reads records from the specified local table
-     * 
+     *
      * @param query A QueryJS object representing the query to use while reading the table
      * @returns A promise that is resolved with the read results when the operation is completed successfully or rejected with
      *          the error if it fails.
      */
     this.read = function (query) {
-        
+
         return Platform.async(function(callback) {
             callback();
         })().then(function() {
@@ -44214,15 +44216,15 @@ function MobileServiceSyncContext(client) {
     };
     /**
      * Delete an object from the specified local table
-     * 
+     *
      * @param tableName Name of the local table to delete the object from
      * @param The object to delete from the local table.
      */
     this.del = function (tableName, instance) {
-        
+
         return storeTaskRunner.run(function() {
             validateInitialization();
-            
+
             Validate.isString(tableName, 'tableName');
             Validate.notNullOrEmpty(tableName, 'tableName');
 
@@ -44245,35 +44247,35 @@ function MobileServiceSyncContext(client) {
             });
         });
     };
-    
+
     /**
      * Pulls changes from the server table into the local store.
-     * 
+     *
      * @param query Query specifying which records to pull
      * @param [queryId] A unique string ID for an incremental pull query OR null for a vanilla pull query.
-     * @param [settings] An object that defines various pull settings. 
-     * 
-     * @returns A promise that is fulfilled when all records are pulled OR is rejected if the pull fails or is cancelled.  
+     * @param [settings] An object that defines various pull settings.
+     *
+     * @returns A promise that is fulfilled when all records are pulled OR is rejected if the pull fails or is cancelled.
      */
-    this.pull = function (query, queryId, settings) { 
+    this.pull = function (query, queryId, settings) {
         //TODO: Implement cancel
         //TODO: Perform push before pulling
         return syncTaskRunner.run(function() {
             validateInitialization();
-            
+
             return pullManager.pull(query, queryId, settings);
         });
     };
-    
+
     /**
      * Pushes operations performed on the local store to the server tables.
-     * 
+     *
      * Error handling is delegated to the pushHandler property of MobileServiceSyncContext instance.
      * The pushHandler is an object with the following property:
      * - function onConflict (pushError) - this is called when a conflict is encountered while pushing a record to the server.
      * - function onError (pushError) - this is called when an error is encountered while pushing a record to the server.
-     * 
-     * @returns A promise that is fulfilled when all pending operations are pushed OR is rejected if the push fails or is cancelled.  
+     *
+     * @returns A promise that is fulfilled when all pending operations are pushed OR is rejected if the push fails or is cancelled.
      */
     this.push = function () { //TODO: Implement cancel
         return syncTaskRunner.run(function() {
@@ -44282,17 +44284,17 @@ function MobileServiceSyncContext(client) {
             return pushManager.push(this.pushHandler);
         }.bind(this));
     };
-    
+
     /**
      * Purges data, pending operations and incremental sync state associated with a local table
      * A regular purge, would fail if there are any pending operations for the table being purged.
      * A forced purge will proceed even if pending operations for the table being purged exist in the operation table. In addition,
      * it will also delete the table's pending operations.
-     * 
+     *
      * @param query Query object that specifies what records are to be purged
      * @param [forcePurge] An optional boolean, which if set to true, will perform a forced purge.
-     * 
-     * @returns A promise that is fulfilled when purge is complete OR is rejected if it fails.  
+     *
+     * @returns A promise that is fulfilled when purge is complete OR is rejected if it fails.
      */
     this.purge = function (query, forcePurge) {
         return syncTaskRunner.run(function() {
@@ -44307,7 +44309,7 @@ function MobileServiceSyncContext(client) {
             return purgeManager.purge(query, forcePurge);
         }.bind(this));
     };
-    
+
     // Unit test purposes only
     this._getOperationTableManager = function () {
         return operationTableManager;
@@ -44315,7 +44317,7 @@ function MobileServiceSyncContext(client) {
     this._getPurgeManager = function() {
         return purgeManager;
     };
-    
+
     // Performs upsert and logs the action in the operation table
     // Validates parameters. Callers can skip validation
     function upsertWithLogging(tableName, instance, action, shouldOverwrite) {
@@ -44324,11 +44326,11 @@ function MobileServiceSyncContext(client) {
 
         Validate.notNull(instance, 'instance');
         Validate.isValidId(instance.id, 'instance.id');
-        
+
         if (!store) {
             throw new Error('MobileServiceSyncContext not initialized');
         }
-        
+
         return store.lookup(tableName, instance.id, true /* suppressRecordNotFoundError */).then(function(existingRecord) {
             if (existingRecord && !shouldOverwrite) {
                 throw new Error('Record with ID ' + existingRecord.id + ' already exists in the table ' + tableName);
@@ -44397,7 +44399,7 @@ function MobileServiceSyncTable(tableName, client) {
 
     /**
      * Inserts a new object / record in the local table
-     * @param instance Object / record to be inserted in the local table 
+     * @param instance Object / record to be inserted in the local table
      * @returns A promise that is resolved with the inserted object when the operation is completed successfully.
      *          If the operation fails, the promise is rejected.
      */
@@ -44419,10 +44421,10 @@ function MobileServiceSyncTable(tableName, client) {
      * Gets an object with the specified ID from the local table
      * @param id ID of the object to get from the local table
      * @param {boolean} [suppressRecordNotFoundError] If set to true, lookup will return an undefined object if the record is not found.
-     *                                                Otherwise, lookup will fail. 
+     *                                                Otherwise, lookup will fail.
      *                                                This flag is useful to distinguish between a lookup failure due to the record not being present in the table
      *                                                versus a genuine failure in performing the lookup operation
-     * 
+     *
      * @returns A promise that is resolved with the looked up object when the operation is completed successfully.
      *          If the operation fails, the promise is rejected.
      */
@@ -44432,7 +44434,7 @@ function MobileServiceSyncTable(tableName, client) {
 
     /**
      * Reads records from the local table
-     * 
+     *
      * @param {query} A QueryJS object representing the query to use while reading the table. If no query is specified, the
      *                entire local table will be read.
      * @returns A promise that is resolved with the read results when the operation is completed successfully or rejected with
@@ -44442,7 +44444,7 @@ function MobileServiceSyncTable(tableName, client) {
         if (_.isNull(query)) {
             query = new Query(tableName);
         }
-        
+
         return client.getSyncContext().read(query);
     };
 
@@ -44458,19 +44460,19 @@ function MobileServiceSyncTable(tableName, client) {
 
     /**
      * Pulls changes from the server table into the local store.
-     * 
+     *
      * @param [query] Query specifying which records to pull
      *                If no query is specified, the entire table will be pulled.
      * @param [queryId] A unique string ID for an incremental pull query OR null for a vanilla pull query.
-     * @param [settings] An object that defines various pull settings. 
-     * 
-     * @returns A promise that is fulfilled when all records are pulled OR is rejected if the pull fails or is cancelled.  
+     * @param [settings] An object that defines various pull settings.
+     *
+     * @returns A promise that is fulfilled when all records are pulled OR is rejected if the pull fails or is cancelled.
      */
     this.pull = function (query, queryId, settings) {
         if (!query) {
             query = new Query(tableName);
         }
-        
+
         return client.getSyncContext().pull(query, queryId, settings);
     };
 
@@ -44479,12 +44481,12 @@ function MobileServiceSyncTable(tableName, client) {
      * A regular purge, would fail if there are any pending operations for the table being purged.
      * A forced purge will proceed even if pending operations for the table being purged exist in the operation table. In addition,
      * it will also delete the table's pending operations.
-     * 
+     *
      * @param [query] Query object that specifies what records are to be purged.
      *                If no query is specified, the entire table will be purged.
      * @param [forcePurge] An optional boolean, which if set to true, will perform a forced purge.
-     * 
-     * @returns A promise that is fulfilled when purge is complete OR is rejected if it fails.  
+     *
+     * @returns A promise that is fulfilled when purge is complete OR is rejected if it fails.
      */
     this.purge = function (query, forcePurge) {
         if (!query) {
@@ -44521,7 +44523,7 @@ var Validate = _dereq_('../Utilities/Validate'),
 var idPropertyName = tableConstants.idPropertyName,
     versionColumnName = tableConstants.sysProps.versionColumnName,
     operationTableName = tableConstants.operationTableName;
-    
+
 function createOperationTableManager(store) {
 
     Validate.isObject(store);
@@ -44549,7 +44551,7 @@ function createOperationTableManager(store) {
     api._getOperationForUpdatingLog = getOperationForUpdatingLog;
 
     return api;
-    
+
     /**
      * Defines the operation table in the local store.
      * Schema of the operation table is: [ INT id | TEXT tableName | TEXT action | TEXT itemId ]
@@ -44565,7 +44567,7 @@ function createOperationTableManager(store) {
                 tableName: ColumnType.String,
                 action: ColumnType.String,
                 itemId: ColumnType.String,
-                metadata: ColumnType.Object 
+                metadata: ColumnType.Object
             }
         }).then(function() {
             return getMaxOperationId();
@@ -44574,15 +44576,15 @@ function createOperationTableManager(store) {
             isInitialized = true;
         });
     }
-    
+
     /**
      * Locks the operation with the specified id.
-     * 
+     *
      * TODO: Lock state and the value of the locked operation should be persisted.
      * That way we can handle the following scenario: insert -> initiate push -> connection failure after item inserted in server table
-     * -> client crashes or cancels push -> client app starts again -> delete -> condense. 
+     * -> client crashes or cancels push -> client app starts again -> delete -> condense.
      * In the above scenario if we condense insert and delete into nothing, we end up not deleting the item we sent to server.
-     * And if we do not condense, insert will have no corresponding data in the table to send to the server while pushing as 
+     * And if we do not condense, insert will have no corresponding data in the table to send to the server while pushing as
      * the record would have been deleted.
      */
     function lockOperation(id) {
@@ -44591,7 +44593,7 @@ function createOperationTableManager(store) {
             if (lockedOperationId === id) {
                 return;
             }
-            
+
             if (!lockedOperationId) {
                 lockedOperationId = id;
                 return;
@@ -44600,7 +44602,7 @@ function createOperationTableManager(store) {
             throw new Error('Only one operation can be locked at a time');
         });
     }
-    
+
     /**
      * Unlock the locked operation
      */
@@ -44609,27 +44611,27 @@ function createOperationTableManager(store) {
             lockedOperationId = undefined;
         });
     }
-    
+
     /**
      * Given an operation that will be performed on the store, this method returns a corresponding operation for recording it in the operation table.
      * The logging operation can add a new record, edit an earlier record or remove an earlier record from the operation table.
-     * 
+     *
      * @param tableName Name of the table on which the action is performed
      * @param action Action performed on the table. Valid actions are 'insert', 'update' or 'delete'
      * @param item Record that is being inserted, updated or deleted. In case of 'delete', all properties other than id will be ignored.
-     * 
+     *
      * @returns Promise that is resolved with the logging operation. In case of a failure the promise is rejected.
      */
     function getLoggingOperation(tableName, action, item) {
-        
+
         // Run as a single task to avoid task interleaving.
         return runner.run(function() {
             Validate.notNull(tableName);
             Validate.isString(tableName);
-            
+
             Validate.notNull(action);
             Validate.isString(action);
-            
+
             Validate.notNull(item);
             Validate.isObject(item);
             Validate.isValidId(item[idPropertyName]);
@@ -44637,14 +44639,14 @@ function createOperationTableManager(store) {
             if (!isInitialized) {
                 throw new Error('Operation table manager is not initialized');
             }
-            
+
             return readPendingOperations(tableName, item[idPropertyName]).then(function(pendingOperations) {
-                
+
                 // Multiple operations can be pending for <tableName, itemId> due to an opertion being locked in the past.
                 // Get the last pending operation
                 var pendingOperation = pendingOperations.pop(),
                     condenseAction;
-                
+
                 // If the operation table has a pending operation, we attempt to condense the new action into the pending operation.
                 // If not, we simply add a new operation.
                 if (pendingOperation) {
@@ -44660,18 +44662,18 @@ function createOperationTableManager(store) {
                 } else if (condenseAction === 'remove') { // Remove the earlier log from the operation table
                     return getOperationForDeletingLog(pendingOperation.id);
                 } else if (condenseAction === 'nop') { // NO OP. Nothing to be logged
-                    return; 
+                    return;
                 } else  { // Error
                     throw new Error('Unknown condenseAction: ' + condenseAction);
                 }
             });
         });
     }
-    
+
     /**
      * Reads the pending operations for the specified table and item / record ID from the operation table.
      * @param tableName Name of the table whose operations we are looking for
-     * @param itemId ID of the record whose operations we are looking for 
+     * @param itemId ID of the record whose operations we are looking for
      */
     function readPendingOperations(tableName, itemId) {
         return Platform.async(function(callback) {
@@ -44683,10 +44685,10 @@ function createOperationTableManager(store) {
             }, tableName, itemId).orderBy('id'));
         });
     }
-    
+
     /**
      * Gets the first / oldest pending operation, i.e. the one with smallest id value
-     * 
+     *
      * @returns Object containing logRecord (record from the operation table) and an optional data record (i.e. record associated with logRecord).
      * The data record will be present only for insert and update operations.
      */
@@ -44698,7 +44700,7 @@ function createOperationTableManager(store) {
 
     /**
      * Removes the operation that is currently locked
-     * 
+     *
      * @returns A promise that is fulfilled when the locked operation is unlocked.
      * If no operation is currently locked, the promise is rejected.
      */
@@ -44707,7 +44709,7 @@ function createOperationTableManager(store) {
             return unlockOperation();
         });
     }
-    
+
 
     // Checks if the specified operation is locked
     function isLocked(operation) {
@@ -44719,7 +44721,7 @@ function createOperationTableManager(store) {
             query = new Query(operationTableName).where(function(lastProcessedOperationId) {
                         return this.id > lastProcessedOperationId;
                     }, lastProcessedOperationId).orderBy('id').take(1);
-        
+
         // Read record from operation table with the smallest ID
         return store.read(query).then(function(result) {
             if (result.length === 1) {
@@ -44733,14 +44735,14 @@ function createOperationTableManager(store) {
             if (!logRecord) { // no pending records
                 return;
             }
-            
+
             if (logRecord.action === 'delete') {
                 return {
                     logRecord: logRecord
                 };
             }
-            
-            // Find the data record associated with the log record. 
+
+            // Find the data record associated with the log record.
             return store.lookup(logRecord.tableName, logRecord.itemId, true /* suppressRecordNotFoundError */).then(function(data) {
                 if (data) { // Return the log record and the data record.
                     return {
@@ -44748,13 +44750,13 @@ function createOperationTableManager(store) {
                         data: data
                     };
                 }
-                
+
                 // It is possible that a log record corresponding to an insert / update operation has no corresponding
-                // data record. 
-                // 
+                // data record.
+                //
                 // This can happen in the following scenario:
                 // insert -> push / lock operation begins -> delete -> push fails
-                //  
+                //
                 // In such a case, we remove the log operation from the operation table and proceed to the next log operation.
                 return removePendingOperationInternal(logRecord.id).then(function() {
                     lastProcessedOperationId = logRecord.id;
@@ -44763,7 +44765,7 @@ function createOperationTableManager(store) {
             });
         });
     }
-    
+
     function removePendingOperation(id) {
         return runner.run(function() {
             return removePendingOperationInternal(id);
@@ -44789,7 +44791,7 @@ function createOperationTableManager(store) {
      *          'add' - if a new operation should be added
      */
     function getCondenseAction(pendingOperation, newAction) {
-        
+
         var pendingAction = pendingOperation.action,
             condenseAction;
         if (pendingAction === 'insert' && newAction === 'update') {
@@ -44807,14 +44809,14 @@ function createOperationTableManager(store) {
         } else {
             throw new Error('Condense not supported when pending action is ' + pendingAction + ' and new action is ' + newAction);
         }
-        
+
         if (isLocked(pendingOperation)) {
             condenseAction = 'add';
         }
-        
+
         return condenseAction;
     }
-    
+
     /**
      * Gets the operation that will insert a new record in the operation table.
      */
@@ -44833,7 +44835,7 @@ function createOperationTableManager(store) {
             };
         });
     }
-    
+
     /**
      * Gets the operation that will update an existing record in the operation table.
      */
@@ -44850,7 +44852,7 @@ function createOperationTableManager(store) {
             };
         });
     }
-    
+
     /**
      * Gets an operation that will delete a record from the operation table.
      */
@@ -44864,12 +44866,12 @@ function createOperationTableManager(store) {
 
     /**
      * Gets the metadata to associate with a log record in the operation table
-     * 
+     *
      * @param action 'insert', 'update' and 'delete' correspond to the insert, update and delete operations.
      *               'upsert' is a special action that is used only in the context of conflict handling.
      */
     function getMetadata(tableName, action, item) {
-        
+
         return Platform.async(function(callback) {
             callback();
         })().then(function() {
@@ -44877,7 +44879,7 @@ function createOperationTableManager(store) {
 
             // If action is update and item defines version property OR if action is insert / update,
             // define metadata.version to be the item's version property
-            if (action === 'upsert' || 
+            if (action === 'upsert' ||
                 action === 'insert' ||
                 (action === 'update' && item.hasOwnProperty(versionColumnName))) {
                 metadata[versionColumnName] = item[versionColumnName];
@@ -44893,7 +44895,7 @@ function createOperationTableManager(store) {
                 throw new Error('Invalid action ' + action);
             }
         });
-        
+
     }
 
     /**
@@ -44904,7 +44906,7 @@ function createOperationTableManager(store) {
         var query = new Query(operationTableName);
         return store.read(query.orderByDescending('id').take(1)).then(function(result) {
             Validate.isArray(result);
-            
+
             if (result.length === 0) {
                 return 0;
             } else if (result.length === 1) {
@@ -44937,22 +44939,22 @@ var Validate = _dereq_('../Utilities/Validate'),
     constants = _dereq_('../constants'),
     tableConstants = constants.table,
     _ = _dereq_('../Utilities/Extensions');
-    
+
 var defaultPageSize = 50,
     idPropertyName = tableConstants.idPropertyName,
     pulltimeTableName = tableConstants.pulltimeTableName,
     sysProps = tableConstants.sysProps;
-    
+
 function createPullManager(client, store, storeTaskRunner, operationTableManager) {
-    // Task runner for running pull tasks. We want only one pull to run at a time. 
+    // Task runner for running pull tasks. We want only one pull to run at a time.
     var pullTaskRunner = taskRunner(),
         mobileServiceTable,
         pageSize,
-        lastKnownUpdatedAt, // get the largest known value of the updatedAt column 
-        tablePullQuery, // the query specified by the user for pulling the table 
+        lastKnownUpdatedAt, // get the largest known value of the updatedAt column
+        tablePullQuery, // the query specified by the user for pulling the table
         pagePullQuery, // query for fetching a single page
         pullQueryId; // the query ID. if this is a non-null string, the pull will be performed incrementally.
-    
+
     return {
         initialize: initialize,
         pull: pull
@@ -44967,26 +44969,26 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
                 name: pulltimeTableName,
                 columnDefinitions: {
                     id: 'string', // column for storing queryId
-                    tableName: 'string', // column for storing table name 
+                    tableName: 'string', // column for storing table name
                     value: 'date' // column for storing lastKnownUpdatedAt
                 }
             });
         });
     }
-    
+
     /**
      * Pulls changes from the server tables into the local store.
-     * 
+     *
      * @param query Query specifying which records to pull
      * @param pullQueryId A unique string ID for an incremental pull query OR null for a vanilla pull query.
      * @param [settings] An object that defines the various pull settings - currently only pageSize
-     * 
-     * @returns A promise that is fulfilled when all records are pulled OR is rejected if the pull fails or is cancelled.  
+     *
+     * @returns A promise that is fulfilled when all records are pulled OR is rejected if the pull fails or is cancelled.
      */
     function pull(query, queryId, settings) {
         //TODO: support pullQueryId
         //TODO: page size should be configurable
-        
+
         return pullTaskRunner.run(function() {
             validateQuery(query, 'query');
             Validate.isString(queryId, 'queryId'); // non-null string or null - both are valid
@@ -45002,13 +45004,13 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
             }
 
             // Make a copy of the query as we will be modifying it
-            tablePullQuery = copyQuery(query);            
+            tablePullQuery = copyQuery(query);
 
             mobileServiceTable = client.getTable(tablePullQuery.getComponents().table);
             mobileServiceTable._features = queryId ? [constants.features.OfflineSync, constants.features.IncrementalPull] : [constants.features.OfflineSync];
             pullQueryId = queryId;
 
-            // Set up the query for initiating a pull and then pull all pages          
+            // Set up the query for initiating a pull and then pull all pages
             return setupQuery().then(function() {
                 return pullAllPages();
             });
@@ -45038,7 +45040,7 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
             }
         });
     }
-    
+
     // Check if the pull is complete or if there are more records left to be pulled
     function isPullComplete(pulledRecords) {
          // Pull is NOT complete when the number of fetched records is less than page size as the server's page size
@@ -45046,7 +45048,7 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
          // We consider the pull to be complete only when the result contains 0 records.
         return pulledRecords.length === 0;
     }
-    
+
     // Pull the page as described by the query
     function pullPage() {
 
@@ -45056,9 +45058,9 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
         params[tableConstants.includeDeletedFlag] = true;
 
         var pulledRecords;
-        
+
         // azure-query-js does not support datatimeoffset
-        // As a temporary workaround, convert the query to an odata string and replace datetime' with datetimeoffset'. 
+        // As a temporary workaround, convert the query to an odata string and replace datetime' with datetimeoffset'.
         var queryString = pagePullQuery.toOData();
         var tableName = pagePullQuery.getComponents().table;
         queryString = queryString.replace(new RegExp('^/' + tableName), '').replace("datetime'", "datetimeoffset'");
@@ -45069,10 +45071,10 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
             var chain = Platform.async(function(callback) {
                 callback();
             })();
-            
+
             // Process all records in the page
             for (var i in pulledRecords) {
-                chain = processPulledRecord(chain, tableName, pulledRecords[i]); 
+                chain = processPulledRecord(chain, tableName, pulledRecords[i]);
             }
 
             return chain;
@@ -45088,12 +45090,12 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
     function processPulledRecord(chain, tableName, pulledRecord) {
         return chain.then(function() {
 
-            // Update the store as per the pulled record 
+            // Update the store as per the pulled record
             return storeTaskRunner.run(function() {
                 if (Validate.isValidId(pulledRecord[idPropertyName])) {
                     throw new Error('Pulled record does not have a valid ID');
                 }
-                
+
                 return operationTableManager.readPendingOperations(tableName, pulledRecord[idPropertyName]).then(function(pendingOperations) {
                     // If there are pending operations for the record we just pulled, we ignore it.
                     if (pendingOperations.length > 0) {
@@ -45116,11 +45118,11 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
     // For incremental pull, we check if we have any information about it in the store.
     // If not we simply use 1970 to start the sync operation, just like a non-incremental / vanilla pull.
     function getLastKnownUpdatedAt() {
-        
+
         return Platform.async(function(callback) {
             callback();
         })().then(function() {
-            
+
             if (pullQueryId) { // read lastKnownUpdatedAt from the store
                 return store.lookup(pulltimeTableName, pullQueryId, true /* suppressRecordNotFoundError */);
             }
@@ -45166,7 +45168,7 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
     }
 
     // Builds a query to fetch one page
-    // Records with updatedAt values >= updatedAt will be fetched 
+    // Records with updatedAt values >= updatedAt will be fetched
     function buildQueryFromLastKnownUpdateAt(updatedAt) {
 
         lastKnownUpdatedAt = updatedAt;
@@ -45201,13 +45203,13 @@ function createPullManager(client, store, storeTaskRunner, operationTableManager
     function validateQuery(query) {
         Validate.isObject(query);
         Validate.notNull(query);
-        
+
         var components = query.getComponents();
-        
+
         for (var i in components.ordering) {
             throw new Error('orderBy and orderByDescending clauses are not supported in the pull query');
         }
-        
+
         if (components.skip) {
             throw new Error('skip is not supported in the pull query');
         }
@@ -45253,7 +45255,7 @@ var Validate = _dereq_('../Utilities/Validate'),
     MobileServiceTable = _dereq_('../MobileServiceTable'),
     tableConstants = _dereq_('../constants').table,
     _ = _dereq_('../Utilities/Extensions');
-    
+
 function createPurgeManager(store, storeTaskRunner) {
 
     return {
@@ -45265,11 +45267,11 @@ function createPurgeManager(store, storeTaskRunner) {
      * A regular purge, would fail if there are any pending operations for the table being purged.
      * A forced purge will proceed even if pending operations for the table being purged exist in the operation table. In addition,
      * it will also delete the table's pending operations.
-     * 
+     *
      * @param query Query object that specifies what records are to be purged
      * @param [forcePurge] An optional boolean, which if set to true, will perform a forced purge.
-     * 
-     * @returns A promise that is fulfilled when purge is complete OR is rejected if it fails.  
+     *
+     * @returns A promise that is fulfilled when purge is complete OR is rejected if it fails.
      */
     function purge(query, forcePurge) {
         return storeTaskRunner.run(function() {
@@ -45282,9 +45284,9 @@ function createPurgeManager(store, storeTaskRunner) {
             // Query for pending operations associated with this table
             var operationQuery = new Query(tableConstants.operationTableName)
                 .where(function(tableName) {
-                    return this.tableName === tableName; 
+                    return this.tableName === tableName;
                 }, query.getComponents().table);
-            
+
             // Query to search for the incremental sync state associated with this table
             var incrementalSyncStateQuery = new Query(tableConstants.pulltimeTableName)
                 .where(function(tableName) {
@@ -45295,13 +45297,13 @@ function createPurgeManager(store, storeTaskRunner) {
             //    Else, ensure no records exists in the operation table for the table being purged.
             // 2. Delete pull state for all incremental queries associated with this table
             // 3. Delete the records from the table as specified by 'query'
-            // 
+            //
             // TODO: All store operations performed while purging should be part of a single transaction
             // Note: An incremental pull after a purge should fetch purged records again. If we run 3 before 2,
             // we might end up in a state where 3 is complete but 2 has failed. In such a case subsequent incremental pull
             // will not re-fetch purged records. Hence, it is important to run 2 before 3.
             // There still exists a possibility of pending operations being deleted while force purging and the subsequent
-            // operations failing which is tracked by the above TODO. 
+            // operations failing which is tracked by the above TODO.
             return Platform.async(function(callback) {
                 callback();
             })().then(function() {
@@ -45348,7 +45350,7 @@ var Validate = _dereq_('../Utilities/Validate'),
     _ = _dereq_('../Utilities/Extensions');
 
 function createPushManager(client, store, storeTaskRunner, operationTableManager) {
-    // Task runner for running push tasks. We want only one push to run at a time. 
+    // Task runner for running push tasks. We want only one push to run at a time.
     var pushTaskRunner = taskRunner(),
         lastProcessedOperationId,
         pushConflicts,
@@ -45356,16 +45358,16 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
         retryCount,
         maxRetryCount = 5,
         pushHandler;
-    
+
     return {
         push: push
     };
 
     /**
      * Pushes operations performed on the local store to the server tables.
-     * 
+     *
      * @returns A promise that is fulfilled when all pending operations are pushed. Conflict errors won't fail the push operation.
-     *          All conflicts are collected and returned to the user at the completion of the push operation. 
+     *          All conflicts are collected and returned to the user at the completion of the push operation.
      *          The promise is rejected if pushing any record fails for reasons other than conflict or is cancelled.
      */
     function push(handler) {
@@ -45377,7 +45379,7 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
             });
         });
     }
-    
+
     // Resets the state for starting a new push operation
     function reset() {
         lastProcessedOperationId = -1; // Initialize to an invalid operation id
@@ -45385,7 +45387,7 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
         retryCount = 0;
         pushConflicts = [];
     }
-    
+
     // Pushes all pending operations, one at a time.
     // 1. Read the oldest pending operation
     // 2. If 1 did not fetch any operation, go to 6.
@@ -45401,9 +45403,9 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
             if (!pendingOperation) {
                 return; // No more pending operations. Push is complete
             }
-            
+
             var currentOperation = pendingOperation;
-            
+
             return pushOperation(currentOperation).then(function() {
                 return removeLockedOperation();
             }, function(error) {
@@ -45411,7 +45413,7 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
                 return unlockPendingOperation().then(function() {
                     pushError = createPushError(store, operationTableManager, storeTaskRunner, currentOperation, error);
                     //TODO: If the conflict isn't resolved but the error is marked as handled by the user,
-                    //we can end up in an infinite loop. Guard against this by capping the max number of 
+                    //we can end up in an infinite loop. Guard against this by capping the max number of
                     //times handlePushError can be called for the same record.
 
                     // We want to reset the retryCount when we move on to the next record
@@ -45436,52 +45438,52 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
                     if (pushError.isConflict()) {
                         lastProcessedOperationId = currentOperation.logRecord.id;
                         pushConflicts.push(pushError);
-                    } else { 
+                    } else {
                         throw new verror.VError(pushError.getError(), 'Push failed while pushing operation for tableName : ' + currentOperation.logRecord.tableName +
                                                                  ', action: ' + currentOperation.logRecord.action +
                                                                  ', and record ID: ' + currentOperation.logRecord.itemId);
                     }
                 } else { // push error handled
                     // No action needed - We want the operation to be re-pushed.
-                    // No special handling is needed even if the operation was cancelled by the user as part of error handling  
+                    // No special handling is needed even if the operation was cancelled by the user as part of error handling
                 }
             }).then(function() {
                 return pushAllOperations(); // push remaining operations
             });
         });
     }
-    
+
     function readAndLockFirstPendingOperation() {
         return storeTaskRunner.run(function() {
             var pendingOperation;
             return operationTableManager.readFirstPendingOperationWithData(lastProcessedOperationId).then(function(operation) {
                 pendingOperation = operation;
-                
+
                 if (!pendingOperation) {
                     return;
                 }
-                
+
                 return operationTableManager.lockOperation(pendingOperation.logRecord.id);
             }).then(function() {
                 return pendingOperation;
             });
         });
     }
-    
+
     function unlockPendingOperation() {
         return storeTaskRunner.run(function() {
             return operationTableManager.unlockOperation();
         });
     }
-    
+
     function removeLockedOperation() {
         return storeTaskRunner.run(function() {
             return operationTableManager.removeLockedOperation();
         });
     }
-    
+
     function pushOperation(operation) {
-        
+
         return Platform.async(function(callback) {
             callback();
         })().then(function() {
@@ -45508,13 +45510,13 @@ function createPushManager(client, store, storeTaskRunner, operationTableManager
                 default:
                     throw new Error('Unsupported action ' + operation.logRecord.action);
             }
-            
+
         }).then(function() {
             // TODO: Invoke hook to notify record push completed successfully
         });
-        
+
     }
-    
+
     function removeSysProps(record) {
         for (var i in sysProps) {
             delete record[sysProps[i]];
@@ -45536,7 +45538,7 @@ exports.createPushManager = createPushManager;
 var Platform = _dereq_('Platforms/Platform'),
     _ = _dereq_('../Utilities/Extensions'),
     tableConstants = _dereq_('../constants').table;
-    
+
 var operationTableName = tableConstants.operationTableName,
     deletedColumnName = tableConstants.sysProps.deletedColumnName;
 
@@ -45545,20 +45547,20 @@ var operationTableName = tableConstants.operationTableName,
  * and adds other useful methods for error handling.
  */
 function createPushError(store, operationTableManager, storeTaskRunner, pushOperation, operationError) {
-    
+
     return {
         isHandled: false,
         getError: getError,
-        
+
         // Helper methods
         isConflict: isConflict,
-        
+
         // Data query methods
         getTableName: getTableName,
         getAction: getAction,
         getServerRecord: getServerRecord,
         getClientRecord: getClientRecord,
-        
+
         // Error handling methods
         cancelAndUpdate: cancelAndUpdate,
         cancelAndDiscard: cancelAndDiscard,
@@ -45566,14 +45568,14 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
         update: update,
         changeAction: changeAction
     };
-    
+
     /**
      * Get the name of the table for which push was performed
      */
     function getTableName() {
         return makeCopy(pushOperation.logRecord.tableName);
     }
-    
+
     /**
      * Gets the action that was pushed to the server.
      * Action can be one of 'insert', 'update' or 'delete'.
@@ -45581,7 +45583,7 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
     function getAction() {
         return makeCopy(pushOperation.logRecord.action);
     }
-    
+
     /**
      * Gets the value of the server record, if available.
      * **NOTE** Value of the server record may not be available always.
@@ -45591,7 +45593,7 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
     function getServerRecord() {
         return makeCopy(operationError.serverInstance);
     }
-    
+
     /**
      * Gets the value of the client record that was sent to the server.
      * Note that this may not be the latest value.
@@ -45599,7 +45601,7 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
     function getClientRecord() {
         return makeCopy(pushOperation.data);
     }
-    
+
     /**
      * Gets the underlying error.
      * This contains grannular details about the failure. Egs: server response, etc
@@ -45607,7 +45609,7 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
     function getError() {
         return makeCopy(operationError);
     }
-    
+
     /**
      * Checks if the current error is a conflict error.
      * @returns true - if the current error is a conflict error. false - otherwise.
@@ -45615,12 +45617,12 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
     function isConflict() {
         return operationError.request.status === 409 || operationError.request.status === 412;
     }
-    
+
     /**
      * Cancels the push operation for the current record and updates the record in the local store.
-     * 
+     *
      * @param newValue New value of the client record that will be updated in the local store.
-     * 
+     *
      * @returns A promise that is fulfilled when the operation is cancelled and the client record is updated.
      */
     function cancelAndUpdate(newValue) {
@@ -45630,33 +45632,33 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
             if (pushOperation.logRecord.action === 'delete') {
                 throw new Error('Cannot update a deleted record');
             }
-            
+
             if (_.isNull(newValue)) {
                 throw new Error('Need a valid object to update the record');
             }
-            
+
             if (!_.isValidId(newValue.id)) {
                 throw new Error('Invalid ID: ' + newValue.id);
             }
-            
+
             if (newValue.id !== pushOperation.data.id) {
                 throw new Error('Only updating the record being pushed is allowed');
             }
-            
+
             // Operation to update the data record
             var dataUpdateOperation = {
                 tableName: pushOperation.logRecord.tableName,
                 action: 'upsert',
                 data: newValue
             };
-            
+
             // Operation to delete the log record
             var logDeleteOperation = {
                 tableName: operationTableName,
                 action: 'delete',
                 id: pushOperation.logRecord.id
             };
-            
+
             // Execute the log and data operations
             var operations = [dataUpdateOperation, logDeleteOperation];
             return store.executeBatch(operations).then(function() {
@@ -45664,30 +45666,30 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
             });
         });
     }
-    
+
     /**
      * Cancels the push operation for the current record and discards the record from the local store.
-     * 
+     *
      * @returns A promise that is fulfilled when the operation is cancelled and the client record is discarded.
      */
     function cancelAndDiscard() {
         var self = this;
         return storeTaskRunner.run(function() {
-            
+
             // Operation to delete the data record
             var dataDeleteOperation = {
                 tableName: pushOperation.logRecord.tableName,
                 action: 'delete',
                 id: pushOperation.logRecord.itemId
             };
-            
+
             // Operation to delete the log record
             var logDeleteOperation = {
                 tableName: operationTableName,
                 action: 'delete',
                 id: pushOperation.logRecord.id
             };
-            
+
             // Execute the log and data operations
             var operations = [dataDeleteOperation, logDeleteOperation];
             return store.executeBatch(operations).then(function() {
@@ -45695,13 +45697,13 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
             });
         });
     }
-    
+
     /**
      * Updates the client data record associated with the current operation.
      * If required, the metadata in the log record will also be associated.
      *
-     * @param newValue New value of the data record. 
-     * 
+     * @param newValue New value of the data record.
+     *
      * @returns A promise that is fulfilled when the data record is updated in the localstore.
      */
     function update(newValue) {
@@ -45710,15 +45712,15 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
             if (pushOperation.logRecord.action === 'delete') {
                 throw new Error('Cannot update a deleted record');
             }
-            
+
             if (_.isNull(newValue)) {
                 throw new Error('Need a valid object to update the record');
             }
-            
+
             if (!_.isValidId(newValue.id)) {
                 throw new Error('Invalid ID: ' + newValue.id);
             }
-            
+
             if (newValue.id !== pushOperation.data.id) {
                 throw new Error('Only updating the record being pushed is allowed');
             }
@@ -45746,30 +45748,30 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
 
         });
     }
-    
+
     /**
      * Changes the type of operation that will be pushed to the server.
-     * This is useful for handling conflicts where you might need to change the type of the 
+     * This is useful for handling conflicts where you might need to change the type of the
      * operation to be able to push the changes to the server.
      *
-     * Example: You might need to change 'insert' to 'update' to be able to push a record that 
+     * Example: You might need to change 'insert' to 'update' to be able to push a record that
      * was already inserted on the server.
-     * 
-     * Note: Changing the action to delete will automatically remove the associated record from the 
+     *
+     * Note: Changing the action to delete will automatically remove the associated record from the
      * data table in the local store.
-     * 
+     *
      * @param newAction New type of the operation. Valid values are 'insert', 'update' and 'delete'
      * @param [newClientRecord] New value of the client record. The new record ID should match the original record ID.
      *                          If newAction is 'delete', only the version property will be read from newClientRecord. This is useful if
      *                          the conflict handler changes an insert/update action to delete and wants to udpate the version.
-     * 
+     *
      * @returns A promise that is fulfilled when the action is changed and, optionally, the data record is updated / deleted.
      */
     function changeAction(newAction, newClientRecord) {
         var self = this;
         return storeTaskRunner.run(function() {
             var dataOperation, // operation to edit the data record
-                logOperation = { // operation to edit the log record 
+                logOperation = { // operation to edit the log record
                     tableName: operationTableName,
                     action: 'upsert',
                     data: makeCopy(pushOperation.logRecord)
@@ -45781,7 +45783,7 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
                 if (!newClientRecord.id) {
                     throw new Error('New client record value must specify the record ID');
                 }
-                    
+
                 if (newClientRecord.id !== pushOperation.logRecord.itemId) {
                     throw new Error('New client record value cannot change the record ID. Original ID: ' +
                                     pushOperation.logRecord.id + ' New ID: ' + newClientRecord.id);
@@ -45793,29 +45795,29 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
             }
 
             if (newAction === 'insert' || newAction === 'update') {
-                
+
                 // Change the action as specified
                 var oldAction = logOperation.data.action;
                 logOperation.data.action = newAction;
 
                 // Update the client record, if a new value is specified
                 if (newClientRecord) {
-                    
+
                     dataOperation = {
                         tableName: pushOperation.logRecord.tableName,
                         action: 'upsert',
                         data: newClientRecord
                     };
-                    
+
                 } else if (oldAction !== 'insert' && oldAction !== 'update') {
 
-                    // If we are here, it means we are changing the action from delete to insert / update. 
+                    // If we are here, it means we are changing the action from delete to insert / update.
                     // In such a case we expect newClientRecord to be non-null as we won't otherwise know what to insert / update.
                     // Example: changing delete to insert without specifying a newClientRecord is meaningless.
                     throw new Error('Changing action from ' + oldAction + ' to ' + newAction +
                                     ' without specifying a value for the associated record is not allowed!');
                 }
-                
+
             } else if (newAction === 'delete' || newAction === 'del') {
 
                 // Change the action to 'delete'
@@ -45831,20 +45833,20 @@ function createPushError(store, operationTableManager, storeTaskRunner, pushOper
             } else {
                 throw new Error('Action ' + newAction + ' not supported.');
             }
-            
+
             // Execute the log and data operations
             return store.executeBatch([logOperation, dataOperation]).then(function() {
                 self.isHandled = true;
             });
         });
     }
-    
+
     /**
      * Cancels pushing the current operation to the server permanently.
-     * 
-     * This method simply removes the pending operation from the operation table, thereby 
+     *
+     * This method simply removes the pending operation from the operation table, thereby
      * permanently skipping the associated change. A future change done to the same record
-     * will not be affected and such changes will continue to be pushed. 
+     * will not be affected and such changes will continue to be pushed.
      */
     function cancel() {
         var self = this;
@@ -45870,7 +45872,7 @@ function handlePushError(pushError, pushHandler) {
     return Platform.async(function(callback) {
         callback();
     })().then(function() {
-        
+
         if (pushError.isConflict()) {
             if (pushHandler && pushHandler.onConflict) {
                 // NOTE: value of server record will not be available in case of 409.
@@ -45881,7 +45883,7 @@ function handlePushError(pushError, pushHandler) {
         }
 
     }).then(undefined, function(error) {
-        // Set isHandled to false even if the user has set it to handled if the onConflict / onError failed 
+        // Set isHandled to false even if the user has set it to handled if the onConflict / onError failed
         pushError.isHandled = false;
     });
 }
